@@ -6,6 +6,8 @@ const messageInput = form.querySelector('textarea[name="message"]');
 
 const LOCAL_STORAGE_KEY = 'feedback-form-state';
 
+let feedback = {};
+
 function saveFormFeedback() {
   const feedback = {
     email: emailInput.value,
@@ -35,9 +37,11 @@ form.addEventListener('submit', (event) => {
         email: emailInput.value,
         message: messageInput.value,
     }
-    
-    console.log(formConsole);
 
     emailInput.value = '';
     messageInput.value = '';    
+    
+    console.log(formConsole);
+
+    localStorage.removeItem('feedback-form-state');
 });

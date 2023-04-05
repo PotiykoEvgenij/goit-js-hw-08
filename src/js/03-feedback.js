@@ -9,7 +9,7 @@ const LOCAL_STORAGE_KEY = 'feedback-form-state';
 let feedback = {};
 
 function saveFormFeedback() {
-  const feedback = {
+  feedback = {
     email: emailInput.value,
     message: messageInput.value,
   };
@@ -17,8 +17,8 @@ function saveFormFeedback() {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(feedback));
 };
 
-emailInput.addEventListener('input', saveFormFeedback);
-messageInput.addEventListener('input', saveFormFeedback);
+form.addEventListener('input', throttle(saveFormFeedback, 500));
+// messageInput.addEventListener('input', saveFormFeedback);
 
 function loadFormFeedback() {
   const feedback = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
@@ -31,17 +31,28 @@ function loadFormFeedback() {
 loadFormFeedback();
 
 form.addEventListener('submit', (event) => {
-    event.preventDefault();
+  event.preventDefault();
+  
+  if (emailInput.value === '' || messageInput.value === '') {
+    alert('Необхідно заповнити усі поля');
+    return;
+  }
 
-    const formConsole = {
-        email: emailInput.value,
-        message: messageInput.value,
-    }
+  // console.log(feedback);
+  
 
-    emailInput.value = '';
-    messageInput.value = '';    
+  // const formConsole = {
+  //   email: emailInput.value,
+  //   message: messageInput.value,
+  // }
     
-    console.log(formConsole);
+    emailInput.value = '';
+    messageInput.value = '';
+  
+    // console.log(formConsole);
 
     localStorage.removeItem('feedback-form-state');
+    
+
 });
+

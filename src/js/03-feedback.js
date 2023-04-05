@@ -41,15 +41,15 @@ form.addEventListener('submit', (event) => {
   // console.log(feedback);
   
 
-  // const formConsole = {
-  //   email: emailInput.value,
-  //   message: messageInput.value,
-  // }
+  const formConsole = {
+    email: emailInput.value,
+    message: messageInput.value,
+  }
     
     emailInput.value = '';
     messageInput.value = '';
   
-    // console.log(formConsole);
+    console.log(formConsole);
 
     localStorage.removeItem('feedback-form-state');
     
